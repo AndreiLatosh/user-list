@@ -1,0 +1,21 @@
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.page {
+    margin-left: 5px;
+    border: 1px solid black;
+    padding: 2.5px 5px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.page.selected {
+    font-weight: bold;
+}
+
+.page:hover {
+    background-color: lightgray;
+}

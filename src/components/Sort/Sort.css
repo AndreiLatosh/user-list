@@ -1,0 +1,14 @@
+.sort .selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.sort div:not(:first-child) {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.sort {
+    display: flex;
+    margin: 10px 0;
+}

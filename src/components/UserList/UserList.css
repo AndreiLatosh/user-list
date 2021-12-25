@@ -1,0 +1,8 @@
+.filelist__header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 0.5fr;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
