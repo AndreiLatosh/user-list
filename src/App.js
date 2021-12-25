@@ -1,16 +1,17 @@
 import './App.css';
 import UserList from './components/UserList/UserList';
-import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
 import Paginator from './components/Paginator/Paginator';
 import Sort from './components/Sort/Sort';
 import { getDate } from './helpers/helpers';
 import Popup from './components/Popup/Popup';
 import SearchBar from './components/SearchBar/SearchBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from './actions/users';
+import { setUsers } from './reducers/usersReducer';
 
 function App() {
 
-  const [users, setUsers] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [sortType, setSortType] = useState('')
   const [isAsc, setIsAsc] = useState(true)
@@ -18,15 +19,12 @@ function App() {
   const [showPopup, setShowPopup] = useState('none')
   const [deleteId, setDeleteId] = useState(null)
   const [portionNumber, setPortionNumber] = useState(1)
+  const dispatch = useDispatch()
+  const users = useSelector(state => state.users.users)
 
   useEffect(() => {
-    fetchUsers();
+    dispatch(getUsers());
   }, [])
-
-  const fetchUsers = async () => {
-    const response = await axios.get('https://5ebbb8e5f2cfeb001697d05c.mockapi.io/users')
-    setUsers(response.data)
-  }
 
   const sortedUsers = useMemo(() => {
     if (sortType) {
@@ -76,7 +74,7 @@ function App() {
   }
 
   const onYesHandler = () => {
-    setUsers(users.filter(user => user.id !== deleteId))
+    dispatch(setUsers(users.filter(user => user.id !== deleteId)))
     setShowPopup('none')
   }
 
